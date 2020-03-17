@@ -8,35 +8,35 @@ const FormattingDropdown = forwardRef(function ({ x, y, currentFormatting, chang
         bold, italic, underline, strike, script,
      } = currentFormatting;
 
-    return <div className='formatting-dropdown quill-dropdown' style={{ left: x, top: y }} ref={ref}>
-        <div key='bold' className={`styling-dropdown-item quill-dropdown-item ${ bold ? 'selected' : '' }`}
+    return <div className='formatting-dropdown vv-editor-dropdown' style={{ left: x, top: y }} ref={ref}>
+        <div key='bold' className={`styling-dropdown-item vv-editor-dropdown-item ${ bold ? 'selected' : '' }`}
                 onClick={() => changeFormatting('bold', !bold)}>
             <FontAwesomeIcon icon='bold' />
         </div>
-        <div key='italic' className={`styling-dropdown-item quill-dropdown-item ${ italic ? 'selected' : '' }`}
+        <div key='italic' className={`styling-dropdown-item vv-editor-dropdown-item ${ italic ? 'selected' : '' }`}
                 onClick={() => changeFormatting('italic', !italic)}>
             <FontAwesomeIcon icon='italic' />
         </div>
-        <div key='underline' className={`styling-dropdown-item quill-dropdown-item ${ underline ? 'selected' : '' }`}
+        <div key='underline' className={`styling-dropdown-item vv-editor-dropdown-item ${ underline ? 'selected' : '' }`}
                 onClick={() => changeFormatting('underline', !underline)}>
             <FontAwesomeIcon icon='underline' />
         </div>
-        <div key='strike' className={`styling-dropdown-item quill-dropdown-item ${ strike ? 'selected' : '' }`}
+        <div key='strike' className={`styling-dropdown-item vv-editor-dropdown-item ${ strike ? 'selected' : '' }`}
                 onClick={() => changeFormatting('strike', !strike)}>
             <FontAwesomeIcon icon='strikethrough' />
         </div>
-        <div key='sub' className={`styling-dropdown-item quill-dropdown-item ${ script === 'sub' ? 'selected' : '' }`}
+        <div key='sub' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'sub' ? 'selected' : '' }`}
                 onClick={() => changeFormatting('script', script !== 'sub' ? 'sub' : null)}>
             <FontAwesomeIcon icon='subscript' />
         </div>
-        <div key='super' className={`styling-dropdown-item quill-dropdown-item ${ script === 'super' ? 'selected' : '' }`}
+        <div key='super' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'super' ? 'selected' : '' }`}
                 onClick={() => changeFormatting('script', script !== 'super' ? 'super' : null)}>
             <FontAwesomeIcon icon='superscript' />
         </div>
     </div>
 });
 
-export function useFormattingDropdown({ editor, containerRef }) {
+export function useFormattingDropdown({ editorRef, containerRef }) {
     const formattingButtonRef = useRef(null);
     const [ formattingDropdownOpen, setFormattingDropdownOpen ] = useState(false);
     const [ formattingButtonX, setFormattingButtonX ] = useState(-500);
@@ -58,13 +58,13 @@ export function useFormattingDropdown({ editor, containerRef }) {
 
     function changeFormatting(type, value) {
         setFormattingDropdownOpen(false);
-        editor.current.format(type, value);
-        setCurrentFormatting(editor.current.getFormat());
+        editorRef.current.editor.format(type, value);
+        setCurrentFormatting(editorRef.current.editor.getFormat());
     }
 
     useEffect(() => {
-        const editorInstance = editor.current;
-        if (editorInstance) {
+        if (editorRef.current) {
+            const editorInstance = editorRef.current.editor;
             const callback = (range) => {
                 if (range)
                     setCurrentFormatting(editorInstance.getFormat());
@@ -76,7 +76,7 @@ export function useFormattingDropdown({ editor, containerRef }) {
         // eslint complains about ref.current not updating component, 
         // and yet the effect won't re-run with a value unless I use ref.current
         // eslint-disable-next-line
-    }, [ editor.current ]);
+    }, [ editorRef.current ]);
 
     return {
         renderFormattingButton() {
