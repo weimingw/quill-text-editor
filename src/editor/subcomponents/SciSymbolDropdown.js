@@ -1,6 +1,5 @@
 import React, { useState, useRef, forwardRef } from 'react';
 import { useDropdownBehavior } from './Dropdown';
-import omegaIcon from '../icons/omega.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SYMBOL_LIST = [
@@ -13,13 +12,13 @@ const SciSymbolDropdown = forwardRef(function (props, ref) {
     const { x, y } = props;
     const [ searchTerm, setSearchTerm ] = useState('');
 
-    return <div style={{ left: x, top: y }} className='sci-dropdown quill-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='sci-dropdown vv-editor-dropdown' ref={ref}>
         <input value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input>
         <div>
             { 
                 SYMBOL_LIST.map(s => {
                     return s.name.includes(searchTerm) ? 
-                        <div className='sci-dropdown-item quill-dropdown-item' 
+                        <div className='sci-dropdown-item vv-editor-dropdown-item' 
                                 key={s.name}
                                 onClick={() => props.addSymbol(s.symbol)}>
                             {s.symbol}
@@ -32,7 +31,7 @@ const SciSymbolDropdown = forwardRef(function (props, ref) {
 });
 export default SciSymbolDropdown;
 
-export function useSciSymbolDropdown({ editor, containerRef }) {
+export function useSciSymbolDropdown({ editorRef, containerRef }) {
     const sciButtonRef = useRef(null);
     const [ sciDropdownOpen, setSciDropdownOpen ] = useState(false);
     const [ sciDropdownX, setSciDropdownX ] = useState(-500);
@@ -52,9 +51,9 @@ export function useSciSymbolDropdown({ editor, containerRef }) {
     }
 
     function addSymbol(symbol) {
-        var range = editor.current.getSelection(true);
+        var range = editorRef.current.editor.getSelection(true);
         if (range) {
-            editor.current.insertText(range.index, symbol);
+            editorRef.current.editor.insertText(range.index, symbol);
         }
         setSciDropdownOpen(false);
     }
@@ -68,7 +67,7 @@ export function useSciSymbolDropdown({ editor, containerRef }) {
         renderSciSymbolButton() {
             return (
                 <button className="ql-sci-symbol ql-dropdown-button" ref={sciButtonRef} onClick={displaySciSymbolDropdown}>
-                    <img src={omegaIcon} alt='scientific symbols' />
+                    <FontAwesomeIcon icon='atom' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
             );

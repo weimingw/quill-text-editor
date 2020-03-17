@@ -1,14 +1,14 @@
 import React, { useRef, useState, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Quill from 'quill';
+import ReactQuill from 'react-quill'
 import { useDropdownBehavior, useDropdownButtonBehavior } from './Dropdown';
 
-const Parchment = Quill.import('parchment');
+const Parchment = ReactQuill.Quill.import('parchment');
 const sizeConfig = {
     scope: Parchment.Scope.INLINE,
 }
 const SizeClass = new Parchment.Attributor.Class('font-size', 'ql-size', sizeConfig);
-Quill.register(SizeClass, true);
+ReactQuill.Quill.register(SizeClass, true);
 
 const SIZES = [
     { value: '', label: '12 pt' }, 
@@ -19,10 +19,10 @@ const SIZES = [
 
 const SizeDropdown = forwardRef(function (props, ref) {
     const { x, y, size, changeSize } = props;
-    return <div style={{ left: x, top: y }} className='size-dropdown quill-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='size-dropdown vv-editor-dropdown' ref={ref}>
         { 
             SIZES.map(s => 
-                <div className={`quill-dropdown-item ${s.value === size.value ? 'selected' : ''}`}
+                <div className={`vv-editor-dropdown-item ${s.value === size.value ? 'selected' : ''}`}
                         key={s.value}
                         onClick={() => changeSize(s)}>
                     {s.label}
@@ -32,7 +32,7 @@ const SizeDropdown = forwardRef(function (props, ref) {
     </div>
 });
 
-export function useSizeDropdown({ editor, containerRef }) {
+export function useSizeDropdown({ editorRef, containerRef }) {
     const sizeButtonRef = useRef(null);
     const [ sizeDropdownOpen, setSizeDropdownOpen ] = useState(false);
     const [ sizeButtonX, setSizeButtonX ] = useState(-500);
@@ -43,7 +43,7 @@ export function useSizeDropdown({ editor, containerRef }) {
         setDropdownOpen: setSizeDropdownOpen
     });
     useDropdownButtonBehavior({ 
-        editor, 
+        editorRef, 
         options: SIZES, 
         key: 'font-size', 
         setValue: setSize
@@ -59,7 +59,7 @@ export function useSizeDropdown({ editor, containerRef }) {
     }
 
     function changeSize(newSize) {
-        editor.current.format('font-size', newSize.value);
+        editorRef.current.editor.format('font-size', newSize.value);
         setSize(newSize);
         setSizeDropdownOpen(false);
     }

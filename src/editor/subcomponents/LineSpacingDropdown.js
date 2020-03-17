@@ -1,17 +1,16 @@
 import React,  { useState, useRef, forwardRef } from 'react';
-import Quill from 'quill';
-import { useDropdownBehavior } from './Dropdown';
-
-import lineSpacingIcon from '../icons/line-spacing.svg';
+import ReactQuill from 'react-quill';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useDropdownBehavior } from './Dropdown';
+
 // needed for line spacing
-const Parchment = Quill.import('parchment');
+const Parchment = ReactQuill.Quill.import('parchment');
 const lineSpacingConfig = {
     scope: Parchment.Scope.BLOCK,
 }; 
 const LineHeightClass = new Parchment.Attributor.Class('line-spacing', 'ql-line-spacing', lineSpacingConfig);
-Quill.register(LineHeightClass, true);
+ReactQuill.Quill.register(LineHeightClass, true);
 
 const SPACING = [
     { value: '', label: 'Auto' },
@@ -21,9 +20,9 @@ const SPACING = [
 ];
 
 const LineSpacingDropdown = forwardRef(function ({ x, y, currentLineSpacing, changeLineSpacing }, ref) {
-    return <div className='ls-dropdown quill-dropdown' style={{ left: x, top: y }} ref={ref}>
+    return <div className='ls-dropdown vv-editor-dropdown' style={{ left: x, top: y }} ref={ref}>
         { SPACING.map(s => (
-            <div key={s.value} className={`ls-dropdown-item quill-dropdown-item ${currentLineSpacing === s ? 'ls-current' : ''}`}
+            <div key={s.value} className={`ls-dropdown-item vv-editor-dropdown-item ${currentLineSpacing === s ? 'ls-current' : ''}`}
                     onClick={() => changeLineSpacing(s.value)}>
                 {s.label}
             </div>
@@ -31,7 +30,7 @@ const LineSpacingDropdown = forwardRef(function ({ x, y, currentLineSpacing, cha
     </div>
 });
 
-export function useLineSpacingDropdown({ editor, containerRef }) {
+export function useLineSpacingDropdown({ editorRef, containerRef }) {
     const lineSpacingButtonRef = useRef(null);
     const [ lineSpacingDropdownOpen, setLineSpacingDropdownOpen ] = useState(false);
     const [ lineSpacingButtonX, setLineSpacingButtonX ] = useState(-500);
@@ -55,14 +54,14 @@ export function useLineSpacingDropdown({ editor, containerRef }) {
         setCurrentLineSpacing(newLineSpacing);
         setLineSpacingDropdownOpen(false);
 
-        editor.current.format('line-spacing', newLineSpacing);
+        editorRef.current.editor.format('line-spacing', newLineSpacing);
     }
 
     return {
         renderLineSpacingButton() {
             return (
                 <button className='ql-line-height ql-dropdown-button' ref={lineSpacingButtonRef} onClick={handleLineSpacingButtonClick}>
-                    <img src={lineSpacingIcon} alt='line spacing button' />
+                    <FontAwesomeIcon icon='bars' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
             );

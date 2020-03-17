@@ -1,14 +1,15 @@
 import React, { useRef, useState, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Quill from 'quill';
+import ReactQuill from 'react-quill';
+
 import { useDropdownBehavior, useDropdownButtonBehavior } from './Dropdown';
 
-const Parchment = Quill.import('parchment');
+const Parchment = ReactQuill.Quill.import('parchment');
 const fontConfig = {
     scope: Parchment.Scope.INLINE,
 }
 const FontClass = new Parchment.Attributor.Class('font-family', 'ql-font', fontConfig);
-Quill.register(FontClass, true);
+ReactQuill.Quill.register(FontClass, true);
 
 const FONTS = [
     { value: '', label: 'Arial' }, 
@@ -18,10 +19,10 @@ const FONTS = [
 
 const FontDropdown = forwardRef(function (props, ref) {
     const { x, y, font, changeFont } = props;
-    return <div style={{ left: x, top: y }} className='font-dropdown quill-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='vv-font-dropdown vv-editor-dropdown' ref={ref}>
         { 
             FONTS.map(s => 
-                <div className={`quill-dropdown-item ${s.value === font.value ? 'selected' : ''} ql-font-${s.value}`}
+                <div className={`vv-editor-dropdown-item ${s.value === font.value ? 'selected' : ''} ql-font-${s.value}`}
                         key={s.value}
                         onClick={() => changeFont(s)}>
                     {s.label}
@@ -31,7 +32,7 @@ const FontDropdown = forwardRef(function (props, ref) {
     </div>
 });
 
-export function useFontDropdown({ editor, containerRef }) {
+export function useFontDropdown({ editorRef, containerRef }) {
     const fontButtonRef = useRef(null);
     const [ fontDropdownOpen, setFontDropdownOpen ] = useState(false);
     const [ fontButtonX, setFontButtonX ] = useState(-500);
@@ -43,7 +44,7 @@ export function useFontDropdown({ editor, containerRef }) {
     });
 
     useDropdownButtonBehavior({ 
-        editor, 
+        editorRef, 
         options: FONTS, 
         key: 'font-family', 
         setValue: setFont
@@ -59,7 +60,7 @@ export function useFontDropdown({ editor, containerRef }) {
     }
 
     function changeFont(newFont) {
-        editor.current.format('font-family', newFont.value);
+        editorRef.current.editor.format('font-family', newFont.value);
         setFont(newFont);
         setFontDropdownOpen(false);
     }
