@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
 
 import './style/RichTextEditor.scss';
+import './style/RichTextFormatting.scss';
 import { useFontDropdown } from './subcomponents/FontDropdown';
 import { useFormattingDropdown } from './subcomponents/FormattingDropdown';
 import { useLineSpacingDropdown } from './subcomponents/LineSpacingDropdown';
@@ -60,29 +61,29 @@ export default function RichTextEditor(props) {
             { renderLineSpacingDropdown() }
             { renderSciSymbolDropdown() }
             <div className='vv-editor-toolbar' ref={toolbarRef}>
-            <span className="ql-formats">
+            <span className="vv-format-group">
                     { renderFontButton() }
                     { renderSizeButton() }
                 </span>
-                <span className="ql-formats">
+                <span className="vv-format-group">
                     { renderFormattingButton() }
                 </span>
-                <span className="ql-formats">
+                <span className="vv-format-group">
                     <select className="ql-align"></select>
                     { renderLineSpacingButton() }
-                    <button className="ql-list" value="ordered"></button>
-                    <button className="ql-list" value="bullet"></button>
-                    <button className="ql-indent" value="-1"></button>
-                    <button className="ql-indent" value="+1"></button>
+                    <button className="ql-list vv-toolbar-button" value="ordered"></button>
+                    <button className="ql-list vv-toolbar-button" value="bullet"></button>
+                    <button className="ql-indent vv-toolbar-button" value="-1"></button>
+                    <button className="ql-indent vv-toolbar-button" value="+1"></button>
                 </span>
-                <span className="ql-formats">
+                <span className="vv-format-group">
                     { renderSciSymbolButton() }
                 </span>
-                <span className="ql-formats">
-                    <button className="ql-link"></button>
+                <span className="vv-format-group">
+                    <button className="ql-link vv-toolbar-button"></button>
                 </span>
-                <span className="ql-formats">
-                    <button className="ql-clean"></button>
+                <span className="vv-format-group">
+                    <button className="ql-clean vv-toolbar-button"></button>
                 </span>
             </div>
             { loaded ? renderTextEditor() : null }

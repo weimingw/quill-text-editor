@@ -81,7 +81,7 @@ export function useFormattingDropdown({ editorRef, containerRef }) {
     return {
         renderFormattingButton() {
             return (
-                <button className='ql-formatting ql-dropdown-button' ref={formattingButtonRef} onClick={handleFormattingButtonClick}>
+                <button className='vv-formatting-button vv-dropdown-button vv-toolbar-button' ref={formattingButtonRef} onClick={handleFormattingButtonClick}>
                     <FontAwesomeIcon icon='bold' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>

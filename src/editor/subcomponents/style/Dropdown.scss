@@ -1,7 +1,31 @@
-.vv-editor-dropdown {
-    position: absolute;
-    z-index: 5000;
+.vv-rich-text-editor .vv-editor-toolbar {
+    .vv-dropdown-button {
+        display: flex;
+        justify-content: space-between;
+    }
 
-    background: white;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    .vv-dropdown-button > *:first-child {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow-x: hidden;
+    }
+}
+
+.vv-rich-text-editor {
+    .vv-editor-dropdown {
+        position: absolute;
+        z-index: 5000;
+    
+        background: white;
+        box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+    }
+    
+    .vv-editor-dropdown-item {
+        padding: 6px 8px;
+        cursor: pointer;
+    }
+    
+    .vv-editor-dropdown-item:hover {
+        background: rgba(0,0,0,0.1);
+    }
 }

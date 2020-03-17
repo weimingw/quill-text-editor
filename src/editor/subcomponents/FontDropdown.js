@@ -2,18 +2,19 @@ import React, { useRef, useState, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactQuill from 'react-quill';
 
+import './style/FontDropdown.scss';
 import { useDropdownBehavior, useDropdownButtonBehavior } from './Dropdown';
 
 const Parchment = ReactQuill.Quill.import('parchment');
 const fontConfig = {
     scope: Parchment.Scope.INLINE,
 }
-const FontClass = new Parchment.Attributor.Class('font-family', 'ql-font', fontConfig);
+const FontClass = new Parchment.Attributor.Class('font-family', 'vv-font', fontConfig);
 ReactQuill.Quill.register(FontClass, true);
 
 const FONTS = [
     { value: '', label: 'Arial' }, 
-    { value: 'times-new-roman', label: 'Times New Roman' }, 
+    { value: 'times', label: 'Times New Roman' }, 
     { value: 'inconsolata', label: 'Inconsolata' },
 ];
 
@@ -22,7 +23,7 @@ const FontDropdown = forwardRef(function (props, ref) {
     return <div style={{ left: x, top: y }} className='vv-font-dropdown vv-editor-dropdown' ref={ref}>
         { 
             FONTS.map(s => 
-                <div className={`vv-editor-dropdown-item ${s.value === font.value ? 'selected' : ''} ql-font-${s.value}`}
+                <div className={`vv-editor-dropdown-item ${s.value === font.value ? 'selected' : ''} font-${s.value}`}
                         key={s.value}
                         onClick={() => changeFont(s)}>
                     {s.label}
@@ -68,8 +69,8 @@ export function useFontDropdown({ editorRef, containerRef }) {
     return {
         renderFontButton() {
             return (
-                <button className='ql-font' ref={fontButtonRef} onClick={handleFontButtonClick}>
-                    <div className='ql-font-name'>{font.label}</div>
+                <button className='vv-font-button vv-dropdown-button vv-toolbar-button' ref={fontButtonRef} onClick={handleFontButtonClick}>
+                    <div className='vv-dropdown-button-name'>{font.label}</div>
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
             );

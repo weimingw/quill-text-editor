@@ -2,6 +2,7 @@ import React,  { useState, useRef, forwardRef } from 'react';
 import ReactQuill from 'react-quill';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import './style/LineSpacingDropdown.scss';
 import { useDropdownBehavior } from './Dropdown';
 
 // needed for line spacing
@@ -9,7 +10,7 @@ const Parchment = ReactQuill.Quill.import('parchment');
 const lineSpacingConfig = {
     scope: Parchment.Scope.BLOCK,
 }; 
-const LineHeightClass = new Parchment.Attributor.Class('line-spacing', 'ql-line-spacing', lineSpacingConfig);
+const LineHeightClass = new Parchment.Attributor.Class('line-spacing', 'vv-line-spacing', lineSpacingConfig);
 ReactQuill.Quill.register(LineHeightClass, true);
 
 const SPACING = [
@@ -60,7 +61,7 @@ export function useLineSpacingDropdown({ editorRef, containerRef }) {
     return {
         renderLineSpacingButton() {
             return (
-                <button className='ql-line-height ql-dropdown-button' ref={lineSpacingButtonRef} onClick={handleLineSpacingButtonClick}>
+                <button className='vv-line-height vv-dropdown-button vv-toolbar-button' ref={lineSpacingButtonRef} onClick={handleLineSpacingButtonClick}>
                     <FontAwesomeIcon icon='bars' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>

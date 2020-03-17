@@ -66,7 +66,7 @@ export function useSciSymbolDropdown({ editorRef, containerRef }) {
         },
         renderSciSymbolButton() {
             return (
-                <button className="ql-sci-symbol ql-dropdown-button" ref={sciButtonRef} onClick={displaySciSymbolDropdown}>
+                <button className="vv-sci-symbol-button vv-dropdown-button vv-toolbar-button" ref={sciButtonRef} onClick={displaySciSymbolDropdown}>
                     <FontAwesomeIcon icon='atom' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
