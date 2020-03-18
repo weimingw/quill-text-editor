@@ -1,32 +1,42 @@
 
-.vv-font-times {
-    font-family: 'Times New Roman', Times, serif;
-}
+.vv-rich-text-editor {
 
-.vv-font-inconsolata {
-    font-family: 'Inconsolata', monospace;
-}
+    .vv-font-times {
+        font-family: 'Times New Roman', Times, serif;
+    }
+    
+    .vv-font-inconsolata {
+        font-family: 'Inconsolata', monospace;
+    }
+    
+    .vv-size-14 {
+        font-size: 14px;
+    }
+    
+    .vv-size-18 {
+        font-size: 18px;
+    }
+    
+    .vv-size-24 {
+        font-size: 24px;
+    }
+    
+    .vv-align-center {
+        text-align: center;
+    }
+    
+    .vv-align-right {
+        text-align: right;
+    }
+    
+    .vv-align-justify {
+        text-align: justify;
+    }
+    
+    @for $i from 0 through 8 {
+        .vv-indent-#{$i} {
+            padding-left: $i * 3em;
+        }
+    }
 
-.vv-size-14 {
-    font-size: 14px;
-}
-
-.vv-size-18 {
-    font-size: 18px;
-}
-
-.vv-size-24 {
-    font-size: 24px;
-}
-
-.vv-align-center {
-    text-align: center;
-}
-
-.vv-align-right {
-    text-align: right;
-}
-
-.vv-align-justify {
-    text-align: justify;
 }

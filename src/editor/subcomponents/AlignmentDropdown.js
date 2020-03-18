@@ -42,7 +42,7 @@ export function useAlignmentDropdown({ editorRef, containerRef }) {
     const [ alignmentDropdownOpen, setAlignmentDropdownOpen ] = useState(false);
     const [ alignmentButtonX, setAlignmentButtonX ] = useState(-500);
     const [ alignmentButtonY, setAlignmentButtonY ] = useState(-500);
-    const [ currentAlignment, setCurrentalignment ] = useState(1);
+    const [ currentAlignment, setCurrentalignment ] = useState('');
     const { dropdownRef } = useDropdownBehavior({
         buttonRef: alignmentButtonRef,
         setDropdownOpen: setAlignmentDropdownOpen,

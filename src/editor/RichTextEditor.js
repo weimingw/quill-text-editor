@@ -10,6 +10,7 @@ import { useLineSpacingDropdown } from './subcomponents/LineSpacingDropdown';
 import { useSciSymbolDropdown } from './subcomponents/SciSymbolDropdown';
 import { useSizeDropdown } from './subcomponents/SizeDropdown';
 import { useAlignmentDropdown } from './subcomponents/AlignmentDropdown';
+import { useIndentation } from './subcomponents/IndentationButton';
 
 export default function RichTextEditor(props) {
     // editorRef.current.editor.editor will store an instance of the editor that can use Quill APIs documented in https://quilljs.com/docs/api/
@@ -36,6 +37,9 @@ export default function RichTextEditor(props) {
 
     const { renderAlignmentButton, renderAlignmentDropdown } = 
         useAlignmentDropdown({ editorRef, containerRef });
+
+    const { renderIndentLessButton, renderIndentMoreButton } = 
+        useIndentation({ editorRef })
 
     useEffect(() => {
         setLoaded(true);
@@ -78,8 +82,8 @@ export default function RichTextEditor(props) {
                     { renderLineSpacingButton() }
                     <button className="ql-list vv-toolbar-button" value="ordered"></button>
                     <button className="ql-list vv-toolbar-button" value="bullet"></button>
-                    <button className="ql-indent vv-toolbar-button" value="-1"></button>
-                    <button className="ql-indent vv-toolbar-button" value="+1"></button>
+                    { renderIndentLessButton() }
+                    { renderIndentMoreButton() }
                 </span>
                 <span className="vv-format-group">
                     { renderSciSymbolButton() }

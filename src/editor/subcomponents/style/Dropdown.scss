@@ -1,10 +1,10 @@
 .vv-rich-text-editor .vv-editor-toolbar {
-    .vv-dropdown-button {
+    .vv-format-group .vv-toolbar-button.vv-dropdown-button {
         display: flex;
         justify-content: space-between;
     }
 
-    .vv-dropdown-button > *:first-child {
+    .vv-toolbar-button.vv-dropdown-button > *:first-child {
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow-x: hidden;
