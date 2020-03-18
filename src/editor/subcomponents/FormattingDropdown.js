@@ -8,32 +8,37 @@ const FormattingDropdown = forwardRef(function ({ x, y, currentFormatting, chang
         bold, italic, underline, strike, script,
      } = currentFormatting;
 
-    return <div className='formatting-dropdown vv-editor-dropdown' style={{ left: x, top: y }} ref={ref}>
-        <div key='bold' className={`styling-dropdown-item vv-editor-dropdown-item ${ bold ? 'selected' : '' }`}
-                onClick={() => changeFormatting('bold', !bold)}>
-            <FontAwesomeIcon icon='bold' />
+    return (
+        <div 
+            className='vv-formatting-dropdown vv-editor-dropdown' 
+            style={{ left: x, top: y }} ref={ref}
+        >
+            <div key='bold' className={`styling-dropdown-item vv-editor-dropdown-item ${ bold ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('bold', !bold)}>
+                <FontAwesomeIcon icon='bold' />
+            </div>
+            <div key='italic' className={`styling-dropdown-item vv-editor-dropdown-item ${ italic ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('italic', !italic)}>
+                <FontAwesomeIcon icon='italic' />
+            </div>
+            <div key='underline' className={`styling-dropdown-item vv-editor-dropdown-item ${ underline ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('underline', !underline)}>
+                <FontAwesomeIcon icon='underline' />
+            </div>
+            <div key='strike' className={`styling-dropdown-item vv-editor-dropdown-item ${ strike ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('strike', !strike)}>
+                <FontAwesomeIcon icon='strikethrough' />
+            </div>
+            <div key='sub' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'sub' ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('script', script !== 'sub' ? 'sub' : null)}>
+                <FontAwesomeIcon icon='subscript' />
+            </div>
+            <div key='super' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'super' ? 'vv-selected' : '' }`}
+                    onClick={() => changeFormatting('script', script !== 'super' ? 'super' : null)}>
+                <FontAwesomeIcon icon='superscript' />
+            </div>
         </div>
-        <div key='italic' className={`styling-dropdown-item vv-editor-dropdown-item ${ italic ? 'selected' : '' }`}
-                onClick={() => changeFormatting('italic', !italic)}>
-            <FontAwesomeIcon icon='italic' />
-        </div>
-        <div key='underline' className={`styling-dropdown-item vv-editor-dropdown-item ${ underline ? 'selected' : '' }`}
-                onClick={() => changeFormatting('underline', !underline)}>
-            <FontAwesomeIcon icon='underline' />
-        </div>
-        <div key='strike' className={`styling-dropdown-item vv-editor-dropdown-item ${ strike ? 'selected' : '' }`}
-                onClick={() => changeFormatting('strike', !strike)}>
-            <FontAwesomeIcon icon='strikethrough' />
-        </div>
-        <div key='sub' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'sub' ? 'selected' : '' }`}
-                onClick={() => changeFormatting('script', script !== 'sub' ? 'sub' : null)}>
-            <FontAwesomeIcon icon='subscript' />
-        </div>
-        <div key='super' className={`styling-dropdown-item vv-editor-dropdown-item ${ script === 'super' ? 'selected' : '' }`}
-                onClick={() => changeFormatting('script', script !== 'super' ? 'super' : null)}>
-            <FontAwesomeIcon icon='superscript' />
-        </div>
-    </div>
+    );
 });
 
 export function useFormattingDropdown({ editorRef, containerRef }) {
@@ -81,7 +86,7 @@ export function useFormattingDropdown({ editorRef, containerRef }) {
     return {
         renderFormattingButton() {
             return (
-                <button className='ql-formatting ql-dropdown-button' ref={formattingButtonRef} onClick={handleFormattingButtonClick}>
+                <button className='vv-formatting-button vv-dropdown-button vv-toolbar-button' ref={formattingButtonRef} onClick={handleFormattingButtonClick}>
                     <FontAwesomeIcon icon='bold' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>

@@ -12,7 +12,7 @@ const SciSymbolDropdown = forwardRef(function (props, ref) {
     const { x, y } = props;
     const [ searchTerm, setSearchTerm ] = useState('');
 
-    return <div style={{ left: x, top: y }} className='sci-dropdown vv-editor-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='vv-sci-dropdown vv-editor-dropdown' ref={ref}>
         <input value={searchTerm} onChange={e => setSearchTerm(e.target.value)}></input>
         <div>
             { 
@@ -53,6 +53,7 @@ export function useSciSymbolDropdown({ editorRef, containerRef }) {
     function addSymbol(symbol) {
         var range = editorRef.current.editor.getSelection(true);
         if (range) {
+            editorRef.current.editor.deleteText(range.index, range.length);
             editorRef.current.editor.insertText(range.index, symbol);
         }
         setSciDropdownOpen(false);
@@ -66,7 +67,7 @@ export function useSciSymbolDropdown({ editorRef, containerRef }) {
         },
         renderSciSymbolButton() {
             return (
-                <button className="ql-sci-symbol ql-dropdown-button" ref={sciButtonRef} onClick={displaySciSymbolDropdown}>
+                <button className="vv-sci-symbol-button vv-dropdown-button vv-toolbar-button" ref={sciButtonRef} onClick={displaySciSymbolDropdown}>
                     <FontAwesomeIcon icon='atom' />
                     <FontAwesomeIcon icon='caret-down' />
                 </button>

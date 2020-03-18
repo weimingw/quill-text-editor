@@ -1,3 +1,32 @@
 .vv-rich-text-editor {
-    
+
+    .vv-editor-dropdown {
+        * {
+            font-size: 14px;
+        }
+    }
+
+    .vv-editor-toolbar {
+        padding: 0px;
+        display: flex;
+        
+        * {
+            font-size: 14px;
+        }
+
+        .vv-format-group {
+            border-left: 1px solid lightgray;
+            border-right: 1px solid lightgray;
+
+            .vv-toolbar-button  {
+                padding: 6px;
+                height: 32px; 
+                min-width: 36px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
 }

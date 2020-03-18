@@ -1,13 +1,15 @@
 import React, { useRef, useState, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactQuill from 'react-quill'
+
 import { useDropdownBehavior, useDropdownButtonBehavior } from './Dropdown';
+import './style/SizeDropdown.scss';
 
 const Parchment = ReactQuill.Quill.import('parchment');
 const sizeConfig = {
     scope: Parchment.Scope.INLINE,
 }
-const SizeClass = new Parchment.Attributor.Class('font-size', 'ql-size', sizeConfig);
+const SizeClass = new Parchment.Attributor.Class('font-size', 'vv-size', sizeConfig);
 ReactQuill.Quill.register(SizeClass, true);
 
 const SIZES = [
@@ -19,7 +21,7 @@ const SIZES = [
 
 const SizeDropdown = forwardRef(function (props, ref) {
     const { x, y, size, changeSize } = props;
-    return <div style={{ left: x, top: y }} className='size-dropdown vv-editor-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='vv-size-dropdown vv-editor-dropdown' ref={ref}>
         { 
             SIZES.map(s => 
                 <div className={`vv-editor-dropdown-item ${s.value === size.value ? 'selected' : ''}`}
@@ -67,7 +69,7 @@ export function useSizeDropdown({ editorRef, containerRef }) {
     return {
         renderSizeButton() {
             return (
-                <button className='ql-size' ref={sizeButtonRef} onClick={handleSizeButtonClick}>
+                <button className='vv-size-button vv-toolbar-button vv-dropdown-button' ref={sizeButtonRef} onClick={handleSizeButtonClick}>
                     <div>{size.label}</div>
                     <FontAwesomeIcon icon='caret-down' />
                 </button>
