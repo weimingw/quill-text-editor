@@ -24,6 +24,10 @@
         padding: 6px 8px;
         cursor: pointer;
     }
+
+    .vv-editor-dropdown-item.vv-selected {
+        color: #06c;
+    }
     
     .vv-editor-dropdown-item:hover {
         background: rgba(0,0,0,0.1);

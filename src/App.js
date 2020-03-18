@@ -4,10 +4,10 @@ import './style/App.css';
 import RichTextEditor from './editor/RichTextEditor';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCaretDown, faBold, faItalic, faUnderline, faStrikethrough, faSuperscript, faSubscript, faCode, faTable, faSquare, faBars, faAtom } from '@fortawesome/free-solid-svg-icons'
+import { faCaretDown, faBold, faItalic, faUnderline, faStrikethrough, faSuperscript, faSubscript, faCode, faTable, faSquare, faBars, faAtom, faAlignLeft, faAlignRight, faAlignCenter, faAlignJustify, } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
-    faCaretDown, faBold, faItalic, faUnderline, faStrikethrough, faSuperscript, faSubscript, faCode, faTable, faSquare, faBars, faAtom
+    faCaretDown, faBold, faItalic, faUnderline, faStrikethrough, faSuperscript, faSubscript, faCode, faTable, faSquare, faBars, faAtom, faAlignLeft, faAlignRight, faAlignCenter, faAlignJustify,
 )
 
 function App() {

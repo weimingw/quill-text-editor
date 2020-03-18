@@ -9,6 +9,7 @@ import { useFormattingDropdown } from './subcomponents/FormattingDropdown';
 import { useLineSpacingDropdown } from './subcomponents/LineSpacingDropdown';
 import { useSciSymbolDropdown } from './subcomponents/SciSymbolDropdown';
 import { useSizeDropdown } from './subcomponents/SizeDropdown';
+import { useAlignmentDropdown } from './subcomponents/AlignmentDropdown';
 
 export default function RichTextEditor(props) {
     // editorRef.current.editor.editor will store an instance of the editor that can use Quill APIs documented in https://quilljs.com/docs/api/
@@ -32,6 +33,9 @@ export default function RichTextEditor(props) {
 
     const { renderFormattingButton, renderFormattingDropdown } = 
         useFormattingDropdown({ editorRef, containerRef });
+
+    const { renderAlignmentButton, renderAlignmentDropdown } = 
+        useAlignmentDropdown({ editorRef, containerRef });
 
     useEffect(() => {
         setLoaded(true);
@@ -58,6 +62,7 @@ export default function RichTextEditor(props) {
             { renderFontDropdown() }
             { renderSizeDropdown() }
             { renderFormattingDropdown() }
+            { renderAlignmentDropdown() }
             { renderLineSpacingDropdown() }
             { renderSciSymbolDropdown() }
             <div className='vv-editor-toolbar' ref={toolbarRef}>
@@ -69,7 +74,7 @@ export default function RichTextEditor(props) {
                     { renderFormattingButton() }
                 </span>
                 <span className="vv-format-group">
-                    <select className="ql-align"></select>
+                    { renderAlignmentButton() }
                     { renderLineSpacingButton() }
                     <button className="ql-list vv-toolbar-button" value="ordered"></button>
                     <button className="ql-list vv-toolbar-button" value="bullet"></button>

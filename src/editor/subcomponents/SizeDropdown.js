@@ -21,7 +21,7 @@ const SIZES = [
 
 const SizeDropdown = forwardRef(function (props, ref) {
     const { x, y, size, changeSize } = props;
-    return <div style={{ left: x, top: y }} className='size-dropdown vv-editor-dropdown' ref={ref}>
+    return <div style={{ left: x, top: y }} className='vv-size-dropdown vv-editor-dropdown' ref={ref}>
         { 
             SIZES.map(s => 
                 <div className={`vv-editor-dropdown-item ${s.value === size.value ? 'selected' : ''}`}
