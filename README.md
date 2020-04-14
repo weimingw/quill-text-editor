@@ -1,27 +1,34 @@
-# Description
+# minimal-react-webpack-babel-setup
 
-This is code for a Quill text editor component that can be easily integrated with Vault
+[![Build Status](https://travis-ci.org/rwieruch/minimal-react-webpack-babel-setup.svg?branch=master)](https://travis-ci.org/rwieruch/minimal-react-webpack-babel-setup) [![Slack](https://slack-the-road-to-learn-react.wieruch.com/badge.svg)](https://slack-the-road-to-learn-react.wieruch.com/) [![Greenkeeper badge](https://badges.greenkeeper.io/rwieruch/minimal-react-webpack-babel-setup.svg)](https://greenkeeper.io/)
 
-## Available Scripts
+Read how to set it up yourself: [React with Webpack Tutorial](https://www.robinwieruch.de/minimal-react-webpack-babel-setup/).
 
-In the project directory, you can run:
+[![Edit minimal-react-webpack-babel-setup](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/rwieruch/minimal-react-webpack-babel-setup/tree/master/?fontsize=14)
 
-### `yarn start`
+## Features
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* React 16
+* Webpack 4
+* Babel 7
+* Hot Module Replacement
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## DIY Add-Ons
 
-### `yarn test`
+* [ESLint](https://www.robinwieruch.de/react-eslint-webpack-babel/)
+* [CSS Modules](https://www.robinwieruch.de/react-css-modules/)
+* [SVG Icons](https://www.robinwieruch.de/react-svg-icon-components/)
+* [Fonts Support](https://www.robinwieruch.de/webpack-font/)
+* [Images Support](https://www.robinwieruch.de/webpack-images/)
 
-Launches the test runner in the interactive watch mode.<br />
+## Alternatives
 
-### `yarn build`
+* [Advanced React Webpack Babel Setup](https://github.com/rwieruch/advanced-react-webpack-babel-setup) via this [Tutorial](https://www.robinwieruch.de/webpack-advanced-setup-tutorial)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+* `git clone git@github.com:rwieruch/minimal-react-webpack-babel-setup.git`
+* cd minimal-react-webpack-babel-setup
+* npm install
+* npm start
+* visit `http://localhost:8080/`
